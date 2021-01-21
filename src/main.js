@@ -46,14 +46,19 @@ const router = createRouter({
         }
     ],
     linkActiveClass: 'active-link',
-    scrollBehavior(to, from, savedPosition){
-        console.log(to, from, savedPosition);
+    scrollBehavior(_, _2, savedPosition){
         if(savedPosition){
             return savedPosition;
         }
         return {left: 0, top:0}
     }
 });
+
+router.beforeEach(function(to, from, next){
+    console.log('Global beforeach')
+    console.log(to, from)
+    next()
+})
 
 const app = createApp(App)
 
